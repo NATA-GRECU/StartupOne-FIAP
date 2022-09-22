@@ -22,7 +22,13 @@ public class InstituicaoModel implements Serializable {
 	private Long id;
 
 	@Column(name = "nm_inst", length = 100, nullable = false)
-	private String nomeRestaurante;
+	private String nomeInstituicao;
+
+	@Column(name = "estado_inst", length = 40, nullable = false)
+	private String estado;
+
+	@Column(name = "cidade_inst", length = 40, nullable = false)
+	private String cidade;
 
 	@Column(name = "bairro_inst", length = 60, nullable = false)
 	private String bairro;
@@ -43,11 +49,12 @@ public class InstituicaoModel implements Serializable {
 
 	}
 
-	public InstituicaoModel(Long id, String nomeRestaurante, String bairro, String rua, String cnpj, String telefone,
-			List<DoacaoModel> doacao) {
-		super();
+	public InstituicaoModel(Long id, String nomeInstituicao, String estado, String cidade, String bairro, String rua,
+							String cnpj, String telefone, List<DoacaoModel> doacao) {
 		this.id = id;
-		this.nomeRestaurante = nomeRestaurante;
+		this.nomeInstituicao = nomeInstituicao;
+		this.estado = estado;
+		this.cidade = cidade;
 		this.bairro = bairro;
 		this.rua = rua;
 		this.cnpj = cnpj;
@@ -63,12 +70,12 @@ public class InstituicaoModel implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeRestaurante() {
-		return nomeRestaurante;
+	public String getNomeInstituicao() {
+		return nomeInstituicao;
 	}
 
-	public void setNomeRestaurante(String nomeRestaurante) {
-		this.nomeRestaurante = nomeRestaurante;
+	public void setNomeInstituicao(String nomeRestaurante) {
+		this.nomeInstituicao = nomeRestaurante;
 	}
 
 	public String getBairro() {
@@ -115,9 +122,25 @@ public class InstituicaoModel implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
 	@Override
 	public String toString() {
-		return "InstituicaoModel [id=" + id + ", nomeRestaurante=" + nomeRestaurante + ", bairro=" + bairro + ", rua="
+		return "InstituicaoModel [id=" + id + ", nomeInstituicao=" + nomeInstituicao + "estado=" + estado + "cidade=" + cidade +", bairro=" + bairro + ", rua="
 				+ rua + ", cnpj=" + cnpj + ", telefone=" + telefone + ", doacao=" + doacao + "]";
 	}
 

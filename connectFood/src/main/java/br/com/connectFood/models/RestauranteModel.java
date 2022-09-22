@@ -24,6 +24,12 @@ public class RestauranteModel implements Serializable {
 	@Column(name = "nm_rest", length = 60, nullable = false)
 	private String nomeRestaurante;
 
+	@Column(name = "estado_rest", length = 40, nullable = false)
+	private String estado;
+
+	@Column(name = "cidade_rest", length = 40, nullable = false)
+	private String cidade;
+
 	@Column(name = "bairro_rest", length = 40, nullable = false)
 	private String bairro;
 
@@ -43,11 +49,12 @@ public class RestauranteModel implements Serializable {
 
 	}
 
-	public RestauranteModel(Long id, String nomeRestaurante, String bairro, String rua, String cnpj, String telefone,
-			List<DoacaoModel> doacao) {
-		super();
+	public RestauranteModel(Long id, String nomeRestaurante, String estado, String cidade, String bairro, String rua,
+							String cnpj, String telefone, List<DoacaoModel> doacao) {
 		this.id = id;
 		this.nomeRestaurante = nomeRestaurante;
+		this.estado = estado;
+		this.cidade = cidade;
 		this.bairro = bairro;
 		this.rua = rua;
 		this.cnpj = cnpj;
@@ -115,9 +122,25 @@ public class RestauranteModel implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
 	@Override
 	public String toString() {
-		return "RestauranteModel [id=" + id + ", nomeRestaurante=" + nomeRestaurante + ", bairro=" + bairro + ", rua="
+		return "RestauranteModel [id=" + id + ", nomeRestaurante=" + nomeRestaurante + "estado=" + estado + "cidade=" + cidade +", bairro=" + bairro + ", rua="
 				+ rua + ", cnpj=" + cnpj + ", telefone=" + telefone + ", doacao=" + doacao + "]";
 	}
 

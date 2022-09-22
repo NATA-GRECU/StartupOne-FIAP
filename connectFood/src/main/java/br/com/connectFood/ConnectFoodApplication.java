@@ -1,4 +1,4 @@
-package br.com.connectFood.main;
+package br.com.connectFood;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
