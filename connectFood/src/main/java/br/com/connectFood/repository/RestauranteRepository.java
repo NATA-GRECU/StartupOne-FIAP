@@ -1,6 +1,6 @@
 package br.com.connectFood.repository;
 
-import br.com.connectFood.models.RestauranteModel;
+import br.com.connectFood.model.RestauranteModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

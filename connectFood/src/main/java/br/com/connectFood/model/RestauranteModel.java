@@ -1,14 +1,12 @@
-package br.com.connectFood.models;
+package br.com.connectFood.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -42,15 +40,12 @@ public class RestauranteModel implements Serializable {
 	@Column(name = "tel_rest", length = 20)
 	private String telefone;
 
-	@OneToMany(mappedBy = "restaurante")
-	private List<DoacaoModel> doacao;
-
 	public RestauranteModel() {
 
 	}
 
 	public RestauranteModel(int id, String nomeRestaurante, String estado, String cidade, String bairro, String rua,
-							String cnpj, String telefone, List<DoacaoModel> doacao) {
+							String cnpj, String telefone) {
 		this.id = id;
 		this.nomeRestaurante = nomeRestaurante;
 		this.estado = estado;
@@ -59,7 +54,6 @@ public class RestauranteModel implements Serializable {
 		this.rua = rua;
 		this.cnpj = cnpj;
 		this.telefone = telefone;
-		this.doacao = doacao;
 	}
 
 	public int getId() {
@@ -110,14 +104,6 @@ public class RestauranteModel implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-	public List<DoacaoModel> getDoacao() {
-		return doacao;
-	}
-
-	public void setDoacao(List<DoacaoModel> doacao) {
-		this.doacao = doacao;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -140,8 +126,8 @@ public class RestauranteModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RestauranteModel [id=" + id + ", nomeRestaurante=" + nomeRestaurante + "estado=" + estado + "cidade=" + cidade +", bairro=" + bairro + ", rua="
-				+ rua + ", cnpj=" + cnpj + ", telefone=" + telefone + ", doacao=" + doacao + "]";
+		return "RestauranteModel [id=" + id + ", nomeRestaurante=" + nomeRestaurante + ", bairro=" + bairro + ", rua="
+				+ rua + ", cnpj=" + cnpj + ", telefone=" + telefone + "]";
 	}
 
 }

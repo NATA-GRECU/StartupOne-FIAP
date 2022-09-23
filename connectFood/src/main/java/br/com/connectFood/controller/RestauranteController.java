@@ -1,4 +1,4 @@
-package br.com.connectFood.controllers;
+package br.com.connectFood.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.connectFood.models.RestauranteModel;
+import br.com.connectFood.model.RestauranteModel;
 import br.com.connectFood.repository.RestauranteRepository;
 
 @RestController
 @RequestMapping("/restaurante")
 
-public class RestauranteControllers {
+public class RestauranteController {
 
 	@Autowired
 	RestauranteRepository restauranteRepository;

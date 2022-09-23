@@ -1,4 +1,4 @@
-package br.com.connectFood.controllers;
+package br.com.connectFood.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.connectFood.models.InstituicaoModel;
+import br.com.connectFood.model.InstituicaoModel;
 
 @RestController
 @RequestMapping("/instituicao")
