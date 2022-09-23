@@ -19,7 +19,7 @@ public class RestauranteModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_rest")
-	private Long id;
+	private int id;
 
 	@Column(name = "nm_rest", length = 60, nullable = false)
 	private String nomeRestaurante;
@@ -49,7 +49,7 @@ public class RestauranteModel implements Serializable {
 
 	}
 
-	public RestauranteModel(Long id, String nomeRestaurante, String estado, String cidade, String bairro, String rua,
+	public RestauranteModel(int id, String nomeRestaurante, String estado, String cidade, String bairro, String rua,
 							String cnpj, String telefone, List<DoacaoModel> doacao) {
 		this.id = id;
 		this.nomeRestaurante = nomeRestaurante;
@@ -62,11 +62,11 @@ public class RestauranteModel implements Serializable {
 		this.doacao = doacao;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -37,6 +37,30 @@ public class RestauranteControllers {
 
 	}
 
+	@GetMapping("/cnpj/{cnpj}")
+	public RestauranteModel getByCnpj(@PathVariable (value = "cnpj") String cnpj)
+	{
+		return restauranteRepository.findByCnpj(cnpj);
+	}
+
+	@GetMapping("/estado/{estado}")
+	public List<RestauranteModel> getByEstado(@PathVariable (value = "estado") String estado)
+	{
+		return restauranteRepository.findByEstado(estado);
+	}
+
+	@GetMapping("/cidade/cidade")
+	public List<RestauranteModel> getByCidade(@PathVariable (value = "cidade") String cidade)
+	{
+		return restauranteRepository.findByCidade(cidade);
+	}
+
+	@GetMapping("/bairro/{bairro}")
+	public List<RestauranteModel> getByBairro(@PathVariable (value = "bairro") String bairro)
+	{
+		return restauranteRepository.findByBairro(bairro);
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getRestauranteById(@PathVariable(value = "id") int id) {
 		Optional<RestauranteModel> restauranteModelOptional = restauranteRepository.findById(id);
