@@ -1,6 +1,6 @@
 package br.com.connectFood.repository;
 
-import br.com.connectFood.models.InstituicaoModel;
+import br.com.connectFood.model.InstituicaoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public interface InstituicaoRepository extends JpaRepository<InstituicaoModel, Integer> {
 
     List<InstituicaoModel> findByNomeInstituicao(String nome);
-    List<InstituicaoModel> findByCnpj(String cnpj);
+    InstituicaoModel findByCnpj(String cnpj);
     List<InstituicaoModel> findByEstado(String estado);
     List<InstituicaoModel> findByCidade(String cidade);
     List<InstituicaoModel> findByBairro(String bairro);

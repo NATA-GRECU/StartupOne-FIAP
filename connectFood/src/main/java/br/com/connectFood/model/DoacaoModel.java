@@ -1,4 +1,4 @@
-package br.com.connectFood.models;
+package br.com.connectFood.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +11,10 @@ public class DoacaoModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private int id;
+
+	@Column(name = "descricao")
+	private String descricao;
 
 	@ManyToOne
 	@JoinColumn(name = "id_rest")
@@ -25,18 +28,18 @@ public class DoacaoModel implements Serializable {
 
 	}
 
-	public DoacaoModel(Long id, RestauranteModel restaurante, InstituicaoModel instituicao) {
+	public DoacaoModel(int id, RestauranteModel restaurante, InstituicaoModel instituicao) {
 		super();
 		this.id = id;
 		this.restaurante = restaurante;
 		this.instituicao = instituicao;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -60,9 +63,18 @@ public class DoacaoModel implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	@Override
 	public String toString() {
-		return "DoacaoModel [id=" + id + ", restaurante=" + restaurante + ", instituicao=" + instituicao + "]";
+		return "DoacaoModel [id=" + id + ", restaurante=" + restaurante + ", instituicao=" + instituicao + "descricao"
+				+ descricao +"]";
 	}
 
 }
