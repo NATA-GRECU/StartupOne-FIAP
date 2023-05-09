@@ -1,13 +1,9 @@
 package br.com.connectFood.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "T_INSTITUICAO")
@@ -22,17 +18,9 @@ public class InstituicaoModel implements Serializable {
 	@Column(name = "nm_inst", length = 100, nullable = false)
 	private String nomeInstituicao;
 
-	@Column(name = "estado_inst", length = 40, nullable = false)
-	private String estado;
-
-	@Column(name = "cidade_inst", length = 40, nullable = false)
-	private String cidade;
-
-	@Column(name = "bairro_inst", length = 60, nullable = false)
-	private String bairro;
-
-	@Column(name = "rua_inst", length = 100, nullable = false)
-	private String rua;
+	@Column(name = "endereco_inst", nullable = false)
+	@OneToMany
+	private List<AddressModel> endereco;
 
 	@Column(name = "cnpj_inst", length = 30)
 	private String cnpj;
@@ -48,10 +36,6 @@ public class InstituicaoModel implements Serializable {
 							String cnpj, String telefone) {
 		this.id = id;
 		this.nomeInstituicao = nomeInstituicao;
-		this.estado = estado;
-		this.cidade = cidade;
-		this.bairro = bairro;
-		this.rua = rua;
 		this.cnpj = cnpj;
 		this.telefone = telefone;
 	}
@@ -70,22 +54,6 @@ public class InstituicaoModel implements Serializable {
 
 	public void setNomeInstituicao(String nomeRestaurante) {
 		this.nomeInstituicao = nomeRestaurante;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
 	}
 
 	public String getTelefone() {
@@ -108,26 +76,10 @@ public class InstituicaoModel implements Serializable {
 		return serialVersionUID;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
 
 	@Override
 	public String toString() {
-		return "InstituicaoModel [id=" + id + ", nomeInstituicao=" + nomeInstituicao + "estado=" + estado + "cidade=" + cidade +", bairro=" + bairro + ", rua="
-				+ rua + ", cnpj=" + cnpj + ", telefone=" + telefone + "]";
+		return "InstituicaoModel [id=" + id + ", nomeInstituicao=" + nomeInstituicao + ", cnpj=" + cnpj + ", telefone=" + telefone + "]";
 	}
 
 }

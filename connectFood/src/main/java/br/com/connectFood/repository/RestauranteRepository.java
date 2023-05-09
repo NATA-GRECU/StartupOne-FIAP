@@ -9,8 +9,6 @@ public interface RestauranteRepository extends JpaRepository<RestauranteModel, I
 
     List<RestauranteModel> findByNomeRestaurante(String nome);
     RestauranteModel findByCnpj(String nome);
-    List<RestauranteModel> findByEstado(String estado);
-    List<RestauranteModel> findByCidade(String cidade);
-    List<RestauranteModel> findByBairro(String bairro);
+
 
 }
