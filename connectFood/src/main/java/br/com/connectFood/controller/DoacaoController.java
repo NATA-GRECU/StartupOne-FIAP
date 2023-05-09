@@ -30,6 +30,18 @@ public class DoacaoController {
         return ResponseEntity.ok(doacao);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteDoacao(@PathVariable(value = "id") int id) {
+        doacaoRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarDoacao(@PathVariable(value = "id") int id, @RequestBody DoacaoModel doacao) {
+        doacao.setId(id);
+        return ResponseEntity.ok(doacaoRepository.save(doacao));
+    }
+
     @GetMapping
     public ResponseEntity<List<DoacaoModel>> getAllDoacao() {
         return ResponseEntity.ok(doacaoRepository.findAll());
@@ -49,17 +61,5 @@ public class DoacaoController {
     @GetMapping("/instituicao/{nome}")
     public ResponseEntity<Object> getDoacaoByInstituicao(@PathVariable(value = "nome") String nome) {
         return ResponseEntity.ok(doacaoRepository.findByInstituicao_NomeInstituicao(nome));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteDoacao(@PathVariable(value = "id") int id) {
-        doacaoRepository.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> atualizarDoacao(@PathVariable(value = "id") int id, @RequestBody DoacaoModel doacao) {
-        doacao.setId(id);
-        return ResponseEntity.ok(doacaoRepository.save(doacao));
     }
 }

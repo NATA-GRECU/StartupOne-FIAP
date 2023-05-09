@@ -47,23 +47,6 @@ public class InstituicaoController {
         return instituicaoRepository.findByCnpj(cnpj);
     }
 
-    @GetMapping("/estado/{estado}")
-    public List<InstituicaoModel> getByEstado(@PathVariable(value = "estado") String estado)
-    {
-        return instituicaoRepository.findByEstado(estado);
-    }
-
-    @GetMapping("/cidade/{cidade}")
-    public List<InstituicaoModel> getByCidade(@PathVariable(value = "cidade") String cidade)
-    {
-        return instituicaoRepository.findByCidade(cidade);
-    }
-
-    @GetMapping("/bairro/{bairro}")
-    public List<InstituicaoModel> getByBairro(@PathVariable(value = "bairro") String bairro)
-    {
-        return instituicaoRepository.findByBairro(bairro);
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteInstituicao(@PathVariable(value = "id") int id) {

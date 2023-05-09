@@ -9,8 +9,6 @@ public interface InstituicaoRepository extends JpaRepository<InstituicaoModel, I
 
     List<InstituicaoModel> findByNomeInstituicao(String nome);
     InstituicaoModel findByCnpj(String cnpj);
-    List<InstituicaoModel> findByEstado(String estado);
-    List<InstituicaoModel> findByCidade(String cidade);
-    List<InstituicaoModel> findByBairro(String bairro);
+
 
 }

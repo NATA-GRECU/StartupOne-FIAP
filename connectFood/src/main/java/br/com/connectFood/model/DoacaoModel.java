@@ -2,6 +2,7 @@ package br.com.connectFood.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "T_DOACAO")
@@ -23,6 +24,10 @@ public class DoacaoModel implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_inst")
 	private InstituicaoModel instituicao;
+
+	@JoinColumn(name = "dt_agendamento")
+	@Temporal(TemporalType.DATE)
+	private Date dataAgendamento;
 
 	public DoacaoModel() {
 
@@ -69,6 +74,14 @@ public class DoacaoModel implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Date getDataAgendamento() {
+		return dataAgendamento;
+	}
+
+	public void setDataAgendamento(Date dataAgendamento) {
+		this.dataAgendamento = dataAgendamento;
 	}
 
 	@Override
