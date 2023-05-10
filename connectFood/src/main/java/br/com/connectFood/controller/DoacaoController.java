@@ -24,6 +24,8 @@ public class DoacaoController {
     @Autowired
     DoacaoRepository doacaoRepository;
 
+    //TODO Criar service para regras de negócio
+
     @PostMapping
     public ResponseEntity<Object> cadastrarDoacao(@RequestBody DoacaoModel doacao) {
         doacaoRepository.save(doacao);
@@ -62,4 +64,6 @@ public class DoacaoController {
     public ResponseEntity<Object> getDoacaoByInstituicao(@PathVariable(value = "nome") String nome) {
         return ResponseEntity.ok(doacaoRepository.findByInstituicao_NomeInstituicao(nome));
     }
+
+    // TODO Realizar método para busca por data
 }
