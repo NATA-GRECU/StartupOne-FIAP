@@ -19,11 +19,11 @@ public class DoacaoModel implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_rest")
-	private RestauranteModel restaurante;
+	private UserModel restaurante;
 
 	@ManyToOne
 	@JoinColumn(name = "id_inst")
-	private InstituicaoModel instituicao;
+	private UserModel instituicao;
 
 	@JoinColumn(name = "dt_agendamento")
 	@Temporal(TemporalType.DATE)
@@ -33,7 +33,7 @@ public class DoacaoModel implements Serializable {
 
 	}
 
-	public DoacaoModel(int id, RestauranteModel restaurante, InstituicaoModel instituicao) {
+	public DoacaoModel(int id, UserModel restaurante, UserModel instituicao) {
 		super();
 		this.id = id;
 		this.restaurante = restaurante;
@@ -48,19 +48,19 @@ public class DoacaoModel implements Serializable {
 		this.id = id;
 	}
 
-	public RestauranteModel getRestaurante() {
+	public UserModel getRestaurante() {
 		return restaurante;
 	}
 
-	public void setRestaurante(RestauranteModel restaurante) {
+	public void setRestaurante(UserModel restaurante) {
 		this.restaurante = restaurante;
 	}
 
-	public InstituicaoModel getInstituicao() {
+	public UserModel getInstituicao() {
 		return instituicao;
 	}
 
-	public void setInstituicao(InstituicaoModel instituicao) {
+	public void setInstituicao(UserModel instituicao) {
 		this.instituicao = instituicao;
 	}
 
