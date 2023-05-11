@@ -96,14 +96,6 @@ public class DoacaoController {
         return ResponseEntity.ok(getDoacaoService().getDonationByDateBetween(startDateConverted, endDateConverted));
     }
 
-    @GetMapping("/date-before")
-    public ResponseEntity<List<DoacaoModel>> getDoacaoByDateBefore(@RequestParam (value = "date") String searchDate) throws ParseException {
-
-        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(searchDate);
-
-        return ResponseEntity.ok(getDoacaoService().findAllDonationBeforeDate(date));
-    }
-
     public DoacaoService getDoacaoService() {
         return doacaoService;
     }

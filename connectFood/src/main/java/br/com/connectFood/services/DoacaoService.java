@@ -60,11 +60,6 @@ public class DoacaoService {
 
     public List<DoacaoModel> getDonationByDateBetween(Date startDate, Date endDate)
     {
-        return doacaoRepository.findDoacaoByTimeBetween(startDate, endDate);
-    }
-
-    public List<DoacaoModel> findAllDonationBeforeDate(Date date)
-    {
-        return doacaoRepository.findAllWithCreationDateTimeBefore(date);
+        return doacaoRepository.findDoacaoByDateBetween(startDate, endDate);
     }
 }

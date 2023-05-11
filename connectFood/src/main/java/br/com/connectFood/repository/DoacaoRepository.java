@@ -17,9 +17,6 @@ public interface DoacaoRepository extends JpaRepository<DoacaoModel, Integer> {
 
     List<DoacaoModel> findDonationByDate(Date publicationDate);
 
-    List<DoacaoModel> findDoacaoByTimeBetween(Date publicationTimeStart, Date publicationTimeEnd);
-
-    @Query("select a from Article a where a.creationDateTime <= :creationDateTime")
-    List<DoacaoModel> findAllWithCreationDateTimeBefore(@Param("creationDateTime") Date creationDateTime);
+    List<DoacaoModel> findDoacaoByDateBetween(Date publicationTimeStart, Date publicationTimeEnd);
 
 }

@@ -27,7 +27,7 @@ public class DoacaoModel implements Serializable {
 
 	@JoinColumn(name = "dt_agendamento")
 	@Temporal(TemporalType.DATE)
-	private Date dataAgendamento;
+	private Date date;
 
 	public DoacaoModel() {
 
@@ -76,12 +76,12 @@ public class DoacaoModel implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Date getDataAgendamento() {
-		return dataAgendamento;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setDataAgendamento(Date dataAgendamento) {
-		this.dataAgendamento = dataAgendamento;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
