@@ -11,17 +11,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface DoacaoRepository extends JpaRepository<DoacaoModel, Integer> {
 
-    List<DoacaoModel> findByRestaurante_NomeRestaurante(String NomeRestaurante);
+    List<DoacaoModel> findDonationByRestaurante(String restaurante);
 
-    List<DoacaoModel> findByInstituicao_NomeInstituicao(String NomeInstituicao);
+    List<DoacaoModel> findDonationByInstituicao(String intituicao);
 
-    List<DoacaoModel> findAllByDoacaoDate(Date publicationDate);
+    List<DoacaoModel> findDonationByDate(Date publicationDate);
 
-    List<DoacaoModel> findAllByDoacaoTimeBetween(
-            Date publicationTimeStart,
-            Date publicationTimeEnd);
-
-    @Query("select a from Article a where a.creationDateTime <= :creationDateTime")
-    List<DoacaoModel> findAllWithCreationDateTimeBefore(@Param("creationDateTime") Date creationDateTime);
+    List<DoacaoModel> findDoacaoByDateBetween(Date publicationTimeStart, Date publicationTimeEnd);
 
 }

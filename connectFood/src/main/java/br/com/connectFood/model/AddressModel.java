@@ -25,8 +25,11 @@ public class AddressModel {
     @Column(name = "rua_address", length = 100, nullable = false)
     private String rua;
 
-    @Column(name = "nm_address", length = 100, nullable = false)
+    @Column(name = "nm_address", length = 6, nullable = false)
     private String numero;
+
+    @Column(name = "cep_address", length = 9, nullable = false)
+    private String cep;
 
     public int getId() {
         return id;
@@ -74,5 +77,13 @@ public class AddressModel {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }
