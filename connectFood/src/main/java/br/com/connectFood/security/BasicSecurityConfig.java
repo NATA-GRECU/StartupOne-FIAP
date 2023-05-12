@@ -2,21 +2,30 @@ package br.com.connectFood.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class BasicSecurityConfig {
-    @Autowired
-    private UserDetailsService userDatailsService;
+@Configuration
+@EnableWebSecurity
+public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception
-    {
-        auth.userDetailsService(userDatailsService);
-    }
+    //@Autowired
+    //private UserDetailsService userDatailsService;
+
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder()
@@ -24,17 +33,18 @@ public class BasicSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    protected void configure(HttpSecurity http) throws Exception
-    {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/logar").permitAll()
-                .antMatchers("/user/register").permitAll()
-                .anyRequest().authenticated()
-                .and().httpBasic()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().cors()
-                .and().csrf().disable();
-
-
+                .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/logar")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(AUTH_WHITELIST);
+    }
+
 }

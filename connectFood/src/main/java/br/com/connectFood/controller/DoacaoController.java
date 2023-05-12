@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import br.com.connectFood.repository.DoacaoRepository;
 import br.com.connectFood.services.DoacaoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,14 @@ import br.com.connectFood.model.DoacaoModel;
 @RestController
 @RequestMapping("/doacao")
 @CrossOrigin("*")
+@Api(tags = "API de Doações")
 public class DoacaoController {
 
     @Autowired
     private DoacaoService doacaoService;
 
     @PostMapping
+    @ApiOperation("Cadastrar uma doação")
     public ResponseEntity<Object> cadastrarDoacao(@RequestBody DoacaoModel doacao)
     {
         getDoacaoService().registerDonation(doacao);
@@ -31,6 +35,7 @@ public class DoacaoController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Deletar uma doação")
     public ResponseEntity<Object> deleteDoacao(@PathVariable(value = "id") int id)
     {
         getDoacaoService().deleteDonation(id);
@@ -39,6 +44,7 @@ public class DoacaoController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Atualizar uma doação")
     public ResponseEntity<Object> atualizarDoacao(@PathVariable(value = "id") int id, @RequestBody DoacaoModel doacao)
     {
         getDoacaoService().editDonation(id, doacao);
@@ -47,6 +53,7 @@ public class DoacaoController {
     }
 
     @GetMapping
+    @ApiOperation("Trazer todas as doações")
     public ResponseEntity<List<DoacaoModel>> getAllDoacao()
     {
         List<DoacaoModel> donations = getDoacaoService().getAllDonations();
@@ -55,6 +62,7 @@ public class DoacaoController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Trazer uma doação pelo ID")
     public ResponseEntity<Object> getDoacaoById(@PathVariable(value = "id") int id)
     {
         Optional<DoacaoModel> doacaoModel = getDoacaoService().getDonationById(id);
@@ -63,6 +71,7 @@ public class DoacaoController {
     }
 
     @GetMapping("/restaurante/{nome}")
+    @ApiOperation("Trazer doações de um restaurante")
     public ResponseEntity<List<DoacaoModel>> getDoacaoByRestaurante(@PathVariable(value = "restaurante") String restaurante)
     {
         List<DoacaoModel> donations = getDoacaoService().getDonationByRestaurante(restaurante);
@@ -71,6 +80,7 @@ public class DoacaoController {
     }
 
     @GetMapping("/instituicao/{nome}")
+    @ApiOperation("Trazer doações de uma Instituição")
     public ResponseEntity<List<DoacaoModel>> getDoacaoByInstituicao(@PathVariable(value = "instituicao") String instituicao)
     {
         List<DoacaoModel> donaitons = getDoacaoService().getDonationByInstituicao(instituicao);
@@ -79,6 +89,7 @@ public class DoacaoController {
     }
 
     @GetMapping("/date")
+    @ApiOperation("Trazer doações por uma data")
     public ResponseEntity<List<DoacaoModel>> getDoacaoByDate(@RequestParam (value = "date") String searchDate) throws ParseException {
 
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(searchDate);
@@ -87,6 +98,7 @@ public class DoacaoController {
     }
 
     @GetMapping("/date-between")
+    @ApiOperation("Trazer doações por um período de tempo")
     public ResponseEntity<List<DoacaoModel>> getDoacaoBetweenDates(@RequestParam (value = "startDate") String startDate,
                                                                    @RequestParam (value = "endDate") String endDate) throws ParseException {
 

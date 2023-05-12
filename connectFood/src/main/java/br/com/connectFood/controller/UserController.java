@@ -3,6 +3,8 @@ package br.com.connectFood.controller;
 import br.com.connectFood.enums.UserTypeEnum;
 import br.com.connectFood.model.UserModel;
 import br.com.connectFood.services.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/user")
 @CrossOrigin("*")
+@Api(tags = "API de Usuários")
 public class UserController {
 
     @Autowired
@@ -21,6 +24,7 @@ public class UserController {
     //TODO Criar lógica de login
 
     @PostMapping
+    @ApiOperation("Cadastrar um usuário")
     public ResponseEntity<Object> registerUser(@RequestBody UserModel userModel)
     {
         getUserService().registeUser(userModel);
@@ -29,6 +33,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Deletar um usuário")
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") int id)
     {
         getUserService().deleteUser(id);
@@ -37,6 +42,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Atualizar um usuário")
     public ResponseEntity<Object> editUser(@PathVariable(value = "id") int id,
                                            @RequestBody UserModel user)
     {
@@ -46,11 +52,13 @@ public class UserController {
     }
 
     @GetMapping
+    @ApiOperation("Trazer todos os usuários")
     public ResponseEntity<List<UserModel>> getAllUsers() {
         return ResponseEntity.ok(getUserService().getAllUsers());
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Trazer usuário por ID")
     public ResponseEntity<Object> getUserById(@PathVariable(value = "id") int id)
     {
         Optional<UserModel> instituicaoModelOptional = getUserService().getUserById(id);
@@ -59,18 +67,21 @@ public class UserController {
     }
 
     @GetMapping("/cnpj/{cnpj}")
+    @ApiOperation("Trazer usuário por CNPJ")
     public ResponseEntity<UserModel> getByCnpj(@PathVariable(value = "cnpj") String cnpj)
     {
         return ResponseEntity.ok(getUserService().getUserByCnpj(cnpj));
     }
 
     @GetMapping("/donors")
+    @ApiOperation("Trazer usuário por tipo (Doador)")
     public ResponseEntity<List<UserModel>> getByTypeDonors()
     {
         return ResponseEntity.ok(getUserService().findAllByType(UserTypeEnum.DONOR));
     }
 
     @GetMapping("/recievers")
+    @ApiOperation("Trazer usuário por tipo (Recebedor)")
     public ResponseEntity<List<UserModel>> getByTypeRecievers()
     {
         return ResponseEntity.ok(getUserService().findAllByType(UserTypeEnum.RECEIVER));
