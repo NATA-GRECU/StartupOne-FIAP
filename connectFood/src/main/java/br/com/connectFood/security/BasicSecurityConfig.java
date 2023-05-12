@@ -17,8 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //@Autowired
-    //private UserDetailsService userDatailsService;
+    @Autowired
+    private UserDetailsService userDatailsService;
+
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
+        auth.userDetailsService(userDatailsService);
+    }
 
     private static final String[] AUTH_WHITELIST = {
             "/swagger-resources/**",
@@ -36,10 +41,14 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/logar")
+                .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/user/logar",
+                        "/user/register")
                 .permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().cors()
+                .and().csrf().disable();;
     }
 
     @Override

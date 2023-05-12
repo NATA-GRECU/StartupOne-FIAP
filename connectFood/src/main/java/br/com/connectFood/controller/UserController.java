@@ -1,11 +1,13 @@
 package br.com.connectFood.controller;
 
 import br.com.connectFood.enums.UserTypeEnum;
+import br.com.connectFood.model.UserLoginModel;
 import br.com.connectFood.model.UserModel;
 import br.com.connectFood.services.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,20 +16,25 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("*")
+@CrossOrigin(value = "*", allowedHeaders = "*")
 @Api(tags = "API de Usuários")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    //TODO Criar lógica de login
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginModel> login(@RequestBody Optional<UserLoginModel> user)
+    {
+        return getUserService().login(user).map(resp -> ResponseEntity.ok(resp))
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
 
     @PostMapping
     @ApiOperation("Cadastrar um usuário")
     public ResponseEntity<Object> registerUser(@RequestBody UserModel userModel)
     {
-        getUserService().registeUser(userModel);
+        getUserService().registerUser(userModel);
 
         return ResponseEntity.ok().body("Usuário cadastrado com sucesso!");
     }

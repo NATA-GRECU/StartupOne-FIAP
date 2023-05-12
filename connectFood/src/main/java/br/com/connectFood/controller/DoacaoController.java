@@ -18,7 +18,7 @@ import br.com.connectFood.model.DoacaoModel;
 
 @RestController
 @RequestMapping("/doacao")
-@CrossOrigin("*")
+@CrossOrigin(value = "*", allowedHeaders = "*")
 @Api(tags = "API de Doações")
 public class DoacaoController {
 

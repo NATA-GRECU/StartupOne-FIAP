@@ -42,6 +42,8 @@ public class UserModel {
     @Column(name = "type_user", length = 25)
     private String type;
 
+    private String photo;
+
     public int getId() {
         return id;
     }
@@ -120,5 +122,13 @@ public class UserModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
