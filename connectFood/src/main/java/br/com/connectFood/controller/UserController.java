@@ -24,6 +24,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/login")
+    @ApiOperation("Login")
     public ResponseEntity<UserLoginModel> login(@RequestBody Optional<UserLoginModel> user)
     {
         return getUserService().login(user).map(resp -> ResponseEntity.ok(resp))
