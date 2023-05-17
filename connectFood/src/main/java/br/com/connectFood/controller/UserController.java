@@ -31,7 +31,7 @@ public class UserController {
                 .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ApiOperation("Cadastrar um usuário")
     public ResponseEntity<Object> registerUser(@RequestBody UserModel userModel)
     {

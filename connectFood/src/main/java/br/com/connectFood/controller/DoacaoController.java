@@ -25,6 +25,9 @@ public class DoacaoController {
     @Autowired
     private DoacaoService doacaoService;
 
+    // TODO Filtro para finalizados
+    // TODO FIltro de curtidos
+
     @PostMapping
     @ApiOperation("Cadastrar uma doação")
     public ResponseEntity<Object> cadastrarDoacao(@RequestBody DoacaoModel doacao)
